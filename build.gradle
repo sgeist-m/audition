@@ -1,0 +1,85 @@
+buildscript {
+    ext {
+        springBootVersion = "2.1.11.RELEASE"
+        springfoxSwagger2Version = "2.9.2"
+    }
+	repositories {
+		mavenCentral()
+	}
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
+		classpath "net.saliman:gradle-cobertura-plugin:2.3.1"
+    }
+}
+
+plugins {
+    id 'java'
+}
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
+
+
+
+repositories {
+	mavenCentral()
+    jcenter()
+}
+
+springBoot {
+    buildInfo()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile group: 'org.apache.pdfbox', name: 'pdfbox-tools', version: '2.0.17'
+    compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.17'
+    compile group: 'de.brendamour', name: 'jpasskit', version: '0.1.1'
+    compile group: 'org.json', name: 'json', version: '20180813'
+	compile group: 'com.amazonaws', name: 'aws-java-sdk-secretsmanager', version: '1.11.314'
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
+    compile("org.springframework.security:spring-security-core")
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.242'
+    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.11.RELEASE'
+    compile group: 'com.itextpdf', name: 'kernel', version: '7.1.0'
+    compile group: 'com.itextpdf', name: 'io', version: '7.1.0'
+    compile group: 'com.itextpdf', name: 'layout', version: '7.1.0'
+    compile group: 'com.itextpdf', name: 'forms', version: '7.1.0'
+    compile group: 'com.itextpdf', name: 'sign', version: '7.1.0'
+
+
+
+    compile("com.oracle:ojdbc6:11.2.0.3")
+    compile('jcifs:jcifs:1.3.17')
+    { exclude group: 'javax.servlet', module: 'servlet-api' }
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'
+    compile("io.springfox:springfox-swagger2:${springfoxSwagger2Version}")
+    compile("io.springfox:springfox-swagger-ui:${springfoxSwagger2Version}")
+    compile 'mysql:mysql-connector-java'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    compile group: 'de.brendamour', name: 'jpasskit', version: '0.1.1'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
+    compile group: 'net.sourceforge.nekohtml', name:'nekohtml', version: '1.9.21'
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.apache.commons:commons-email:1.5")
+    compile group: 'org.apache.commons', name: 'commons-collections4', version:'4.4'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+    compile group: 'org.owasp.esapi', name: 'esapi', version: '2.2.0.0'
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
